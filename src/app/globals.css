@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Luna Dental Clinic design tokens.
+  Palette is fixed by the brief. Sky and Mint are too light for text on
+  light backgrounds, so they are used for fills, accents and on Navy only.
+*/
+@theme {
+  --color-navy: #0b1f33;
+  --color-navy-800: #14304b;
+  --color-navy-700: #234563;
+  --color-sky: #6ec6ff;
+  --color-sky-soft: #d9efff;
+  --color-ice: #f7fbff;
+  --color-grey: #e5eaf0;
+  --color-mint: #7de2c3;
+  --color-mint-soft: #dcf7ee;
+  /* Muted body text on Ice: #3d5266 is ~8:1 on #F7FBFF */
+  --color-ink-muted: #3d5266;
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-figtree), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* 8px spacing scale is Tailwind's default (--spacing: 0.25rem → 2 = 8px). */
+
+  --radius-soft: 1.25rem;
+  --radius-lg: 2rem;
+
+  --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background: var(--color-ice);
+    color: var(--color-navy);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 100, "WONK" 0;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-mint);
+  }
+
+  ::selection {
+    background: var(--color-sky);
+    color: var(--color-navy);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+  Signature crescent frame: a soft concave "bite" on the left edge of a
+  photo, echoing the Luna logo. Used only on hero photos.
+*/
+.crescent-frame {
+  border-radius: 2rem;
+  -webkit-mask-image: radial-gradient(ellipse 13% 42% at 0% 50%, transparent 98%, #000 100%);
+  mask-image: radial-gradient(ellipse 13% 42% at 0% 50%, transparent 98%, #000 100%);
+}
+@media (max-width: 639px) {
+  .crescent-frame {
+    border-radius: 1.5rem;
+    -webkit-mask-image: radial-gradient(ellipse 9% 40% at 0% 50%, transparent 98%, #000 100%);
+    mask-image: radial-gradient(ellipse 9% 40% at 0% 50%, transparent 98%, #000 100%);
+  }
+}
+
+/*
+  Scroll reveal, CSS only (no JavaScript, no hydration side effects).
+  A gentle 20px rise as content enters the screen. Opacity is left at 1
+  on purpose: text caught at the screen edge must never lose contrast.
+  Browsers without scroll-driven animations, and anyone who prefers
+  reduced motion, simply see the content without movement.
+*/
+@keyframes reveal-up {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-reveal] {
+      animation: reveal-up ease-out both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
 }

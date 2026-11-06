@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Luna Dental Clinic
 
-## Getting Started
+**Modern dental care with a gentle touch.**
+A five-page website for a fictional general and cosmetic dental clinic in Manchester, built for MX AI Academy, Challenge 1.
 
-First, run the development server:
+> Luna Dental Clinic is not a real business. Team names, prices, opening hours and testimonials are fictional demo content and are labelled as such on the site.
+
+<p>
+  <img src="docs/home-desktop.jpg" alt="Luna Dental Clinic home page on desktop" width="640">
+  <img src="docs/home-mobile.jpg" alt="Luna Dental Clinic home page on mobile" width="180">
+</p>
+
+## Pages
+
+| Route | What it contains |
+| --- | --- |
+| `/` | Hero with two calls to action and three trust facts, intro, six services, why choose us, demo testimonials, booking CTA |
+| `/about` | Fictional story, team, values, clinic atmosphere |
+| `/services` | Six treatments with description, what is included, typical time and starting price |
+| `/smile-gallery` | Smiles, clinic, treatment rooms, equipment and team (no before-and-after photos) |
+| `/contact` | Address, phone, email, opening hours, map block, booking form with validation |
+| `/credits` | Unsplash photographer credits |
+
+## Design
+
+- **Type:** Fraunces (soft serif, headings) and Figtree (body), loaded with `next/font`
+- **Colours:** Deep Navy `#0B1F33`, Soft Sky Blue `#6EC6FF`, Ice White `#F7FBFF`, Cool Grey `#E5EAF0`, Mint Green `#7DE2C3`. Sky and Mint are used for fills and accents, or on Navy, so all text passes WCAG AA contrast.
+- **Signature detail:** a soft crescent ("luna") shape in the logo, the hero photo edge, section dividers and the booking banner.
+- **Motion:** CSS-only fade on scroll (no JavaScript), switched off for `prefers-reduced-motion`.
+
+## Tech
+
+- Next.js 16 (App Router, TypeScript), Tailwind CSS 4, `lucide-react` icons
+- `next/image` with Unsplash `remotePatterns`, AVIF/WebP, only the hero image preloaded
+- Every page is statically pre-rendered
+- SEO: per-page metadata, Open Graph image, canonical URLs, `sitemap.xml`, `robots.txt`
+- Security headers set in `next.config.ts`
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production build:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+Set `NEXT_PUBLIC_SITE_URL` to the live address (for example `https://your-site.vercel.app`) so canonical URLs, the sitemap and share images use the right domain.
 
-To learn more about Next.js, take a look at the following resources:
+## Quality
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Lighthouse (mobile, production build): Performance 93 to 96, Accessibility 100, Best Practices 100, SEO 100 on all five pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Credits
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Photos from [Unsplash](https://unsplash.com) photographers, listed on the `/credits` page. Icons by [Lucide](https://lucide.dev).

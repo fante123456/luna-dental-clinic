@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local review screenshots (compressed copies live in /docs)
+/screenshots/
+
+# o2switch upload zip (rebuilt from out/)
+/release/*.zip
+
+# build outputs, upload zips and local tool settings (never committed)
+/release/
+*.zip
+.claude
