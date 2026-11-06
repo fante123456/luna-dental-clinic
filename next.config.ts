@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   poweredByHeader: false,
+  // French and English have separate root layouts (correct <html lang>),
+  // so the 404 page is defined once in app/global-not-found.tsx.
+  experimental: {
+    globalNotFound: true,
+  },
   images: {
     // Unsplash's CDN does the resizing; see src/lib/unsplash-loader.ts
     loader: "custom",

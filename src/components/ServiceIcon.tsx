@@ -1,16 +1,18 @@
-import { Anchor, Gem, Siren, Smile, Sparkles, Stethoscope, type LucideProps } from "lucide-react";
-import type { Service } from "@/lib/services";
+import { Bone, House, Microscope, ScanLine, Scissors, Siren, Stethoscope, Syringe, type LucideProps } from "lucide-react";
+import type { ServiceIconName } from "@/lib/services";
 
 const map = {
   stethoscope: Stethoscope,
-  sparkles: Sparkles,
-  anchor: Anchor,
-  smile: Smile,
+  syringe: Syringe,
+  scissors: Scissors,
+  bone: Bone,
+  microscope: Microscope,
+  scan: ScanLine,
   siren: Siren,
-  gem: Gem,
-} satisfies Record<Service["icon"], unknown>;
+  house: House,
+} satisfies Record<ServiceIconName, unknown>;
 
-export function ServiceIcon({ name, ...props }: { name: Service["icon"] } & LucideProps) {
+export function ServiceIcon({ name, ...props }: { name: ServiceIconName } & LucideProps) {
   const Icon = map[name];
   return <Icon aria-hidden="true" strokeWidth={1.5} {...props} />;
 }

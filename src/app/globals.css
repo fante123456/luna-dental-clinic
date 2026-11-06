@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
-  Luna Dental Clinic design tokens.
+  Site design tokens.
   Palette is fixed by the brief. Sky and Mint are too light for text on
   light backgrounds, so they are used for fills, accents and on Navy only.
 */
@@ -91,7 +91,7 @@
 
 /*
   Signature crescent frame: a soft concave "bite" on the left edge of a
-  photo, echoing the Luna logo. Used only on hero photos.
+  photo. Kept from the original layout. Used only on hero photos.
 */
 .crescent-frame {
   border-radius: 2rem;

@@ -1,10 +1,10 @@
-import { Crescent } from "./LunaMark";
+import { Paw } from "./Logo";
 
 /**
- * Lightweight drawn map of Willow Street (decorative).
- * Used instead of a heavy third-party map embed.
+ * Lightweight drawn map (decorative only, not to scale).
+ * Used instead of a heavy third-party map embed; the real location is the Google Maps link.
  */
-export function MapSketch({ className = "" }: { className?: string }) {
+export function MapSketch({ className = "", label }: { className?: string; label: string }) {
   return (
     <div className={`relative aspect-[16/10] bg-ice ${className}`} aria-hidden="true">
       <svg viewBox="0 0 400 250" className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid slice">
@@ -24,11 +24,11 @@ export function MapSketch({ className = "" }: { className?: string }) {
       </svg>
       <div className="absolute left-[80%] top-[67%] -translate-x-1/2 -translate-y-full">
         <span className="flex size-12 items-center justify-center rounded-full bg-navy shadow-lg shadow-navy/20">
-          <Crescent className="size-6 text-sky" />
+          <Paw className="size-6 text-sky" />
         </span>
       </div>
       <span className="absolute left-4 top-[34%] rounded bg-white/90 px-2 py-0.5 text-xs font-semibold text-navy-700">
-        Willow Street
+        {label}
       </span>
     </div>
   );

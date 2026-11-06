@@ -1,16 +1,19 @@
 import type { ReactNode } from "react";
 import { Container, Eyebrow } from "./Section";
 import { Photo } from "./Photo";
+import type { Lang } from "@/lib/i18n";
 import type { PhotoKey } from "@/lib/photos";
 
 /** Hero for inner pages: H1, short intro, optional photo in the crescent frame. */
 export function PageHero({
+  lang,
   eyebrow,
   title,
   intro,
   photo,
   children,
 }: {
+  lang: Lang;
   eyebrow: string;
   title: ReactNode;
   intro: ReactNode;
@@ -31,6 +34,7 @@ export function PageHero({
         {photo && (
           <Photo
             name={photo}
+            lang={lang}
             preload
             sizes="(min-width: 1200px) 540px, (min-width: 1024px) 45vw, 100vw"
             className="crescent-frame aspect-[4/3] lg:aspect-[5/6]"

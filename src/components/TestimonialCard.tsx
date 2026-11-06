@@ -4,6 +4,9 @@ export type Testimonial = {
   quote: string;
   name: string;
   detail: string;
+  /** e.g. "(translated from French)"; empty when the quote is the original. */
+  note?: string;
+  lang: "fr" | "en";
 };
 
 export function TestimonialCard({
@@ -27,8 +30,9 @@ export function TestimonialCard({
         <blockquote
           className={`mt-5 font-display ${featured ? "text-[1.625rem] leading-snug sm:text-3xl" : "text-xl leading-snug"}`}
         >
-          <p>{t.quote}</p>
+          <p>{t.lang === "fr" ? `« ${t.quote} »` : `“${t.quote}”`}</p>
         </blockquote>
+        {t.note && <p className={`mt-3 text-sm italic ${featured ? "text-ice/75" : "text-ink-muted"}`}>{t.note}</p>}
       </div>
       <figcaption className={`mt-8 text-sm ${featured ? "text-ice/80" : "text-ink-muted"}`}>
         <span className={`block font-semibold ${featured ? "text-ice" : "text-navy"}`}>{t.name}</span>

@@ -1,8 +1,10 @@
 import Image from "next/image";
+import type { Lang } from "@/lib/i18n";
 import { photos, photoSrc, type PhotoKey } from "@/lib/photos";
 
 type Props = {
   name: PhotoKey;
+  lang: Lang;
   sizes: string;
   className?: string;
   imgClassName?: string;
@@ -12,13 +14,13 @@ type Props = {
 };
 
 /** A next/image `fill` image inside a positioned wrapper. Set the aspect ratio on the wrapper. */
-export function Photo({ name, sizes, className = "", imgClassName = "", preload, alt }: Props) {
+export function Photo({ name, lang, sizes, className = "", imgClassName = "", preload, alt }: Props) {
   const p = photos[name];
   return (
     <div className={`relative overflow-hidden bg-grey ${className}`}>
       <Image
         src={photoSrc(p.id)}
-        alt={alt ?? p.alt}
+        alt={alt ?? p.alt[lang]}
         fill
         sizes={sizes}
         preload={preload}
