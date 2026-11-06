@@ -1,6 +1,7 @@
 # Luna Dental Clinic
 
 **Live site:** https://luna-dental.ammar-rajabi.com
+**Vercel:** https://luna-dental-clinic-chi.vercel.app
 
 A five-page website for **Luna Dental Clinic**, a fictional general and cosmetic dental clinic in Manchester, built for **MX AI Academy, Challenge 1**.
 
